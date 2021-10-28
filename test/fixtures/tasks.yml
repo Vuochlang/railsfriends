@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  task_name: MyString
+  deadline: 2021-10-27 18:28:01
+
+two:
+  task_name: MyString
+  deadline: 2021-10-27 18:28:01

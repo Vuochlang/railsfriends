@@ -3,8 +3,9 @@ class HomeController < ApplicationController
   end
 
   def about
-    @about_me = "Testing a sentence..."
-    @answer = 2 + 2
+    @text = "Hello from the HomeController.rb"
+    @name = "Vuochlang Chang"
+    @purpose = "Ruby on Rails Demo Project"
   end
 
 end

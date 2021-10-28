@@ -5,6 +5,11 @@
 
 <br>
 
+  <div class="field mb-3 fw-bold">
+    <%= f.label :user_id %> ID:    
+    <%= current_user.id %>
+  </div>
+
   <div class="field mb-3">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control", placeholder:"Email" %>
@@ -17,7 +22,6 @@
   <div class="field mb-3">
     <%= f.label :current_password %>
     <%= f.password_field :current_password, autocomplete: "current-password", class:"form-control", placeholder:"******" %>
-    <!-- <i>(we need your current password to confirm your changes)</i><br /> -->
   </div>
 
   <div class="field mb-3">
@@ -25,7 +29,6 @@
     <%= f.password_field :password, autocomplete: "new-password", class:"form-control", placeholder:"******" %>
     <% if @minimum_password_length %>
       <em><%= @minimum_password_length %> characters minimum</em>
-      <!-- <i>(leave blank if you don't want to change it)</i><br /> -->
     <% end %>
   </div>
 

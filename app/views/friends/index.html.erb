@@ -19,7 +19,7 @@
         <% if friend.user == current_user %>
         <tr>
           <td>
-            <%= link_to friend.first_name + " " + friend.last_name, friend , class:"text-reset text-decoration-none fw-bolder" %>
+            <%= link_to friend.first_name.capitalize() + " " + friend.last_name.capitalize(), friend , class:" text-decoration-none text-black" %>
           </td>
           <td><%= friend.email %></td>
           <td><%= friend.phone %></td>

@@ -1,0 +1,30 @@
+<div class="jumbotron">
+  <p class="display-4">
+    <%= @task.task_name.capitalize %>
+  </p>
+  <% if @task.deadline.to_date == Date.today %>
+    <p class="text-danger text-uppercase"> It is due today! </p>
+  <% end %>
+  <% if (@task.deadline.to_date - Date.today).to_i < 0 %>
+    <p class="text-danger text-uppercase"> Task is overdue!! </p>
+  <% else %>
+    <p class="text-success text-uppercase">
+      <%= (@task.deadline.to_date - Date.today).to_i %> days left to complete :)
+    </p>
+  <% end %>
+
+
+  <p>
+    <h4>Deadline:</h4>
+    <strong>Date: </strong>  
+    <%= @task.deadline.to_date %><br>
+    <strong>Time: </strong>  
+    <%= @task.deadline.strftime("%I : %M %p")%>
+  </p>
+
+  <hr class="my-4">
+
+  <%= link_to 'Edit', edit_task_path(@task), class:"btn btn-secondary" %>
+  <%= link_to 'Back', tasks_path, class:"btn btn-secondary" %> <br><br>
+  <%= link_to 'Delete', @task, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-outline-danger" %>
+</div>

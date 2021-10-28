@@ -1,0 +1,66 @@
+<h1 class="text-success">Current Tasks</h1>
+
+ <table class="table table-bordered table-hover">
+    <thead class="table-dark">
+    <tr>
+      <th>Task name</th>
+      <th>Due Date</th>
+      <th>Due Time</th>
+      <th>Time Left</th>
+      <th>User ID</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tasks.each do |task| %>
+      <% if task.user.id == current_user.id && (task.deadline.to_date - Date.today).to_i >= 0%>
+        <tr>
+          <td><%= link_to task.task_name.capitalize(), task, class:"text-reset text-decoration-none"%></td>
+          <td><%= task.deadline.to_date %></td>
+          <td><%= task.deadline.strftime("%I : %M %p") %></td>
+          <td>
+            <%= (task.deadline.to_date - Date.today).to_i%></td>
+          <td><%= task.user.id %></td>
+
+          <td><%= link_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure?' }, class:"text-decoration-none text-danger"%>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Task', new_task_path, class:"btn btn-secondary" %>
+
+<hr>
+
+<h1 class="text-danger">Past Tasks</h1>
+
+<table class="table table-bordered table-hover text-center">
+    <thead class="table-light">
+    <tr>
+      <th>Task name</th>
+      <th>Due Date</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tasks.each do |task| %>
+      <% if task.user.id == current_user.id && (task.deadline.to_date - Date.today).to_i < 0%>
+        <tr>
+          <td><%= link_to task.task_name.capitalize(), task, class:"text-reset text-decoration-none"%></td>
+          <td><%= task.deadline.to_date %></td>
+
+          <td><%= link_to 'Change Due Date', edit_task_path(task), class:"text-decoration-none text-primary"%>
+
+          <td><%= link_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure?' }, class:"text-decoration-none text-danger"%>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
